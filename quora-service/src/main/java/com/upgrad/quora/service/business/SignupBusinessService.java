@@ -15,8 +15,15 @@ public class SignupBusinessService {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private PasswordCryptographyProvider passwordCryptographyProvider;
+
     @Transactional
     public UserEntity signup(UserEntity userEntity) throws SignUpRestrictedException {
+
+        String[] encryptedText = passwordCryptographyProvider.encrypt(userEntity.getPassword());
+        userEntity.setSalt(encryptedText[0]);
+        userEntity.setPassword(encryptedText[1]);
 
         if (userDao.getUserByName(userEntity.getUserName()) != null) {
             throw new SignUpRestrictedException("SGR-001", "Try any other Username, this Username has already been taken");
