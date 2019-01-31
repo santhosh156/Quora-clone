@@ -17,3 +17,4 @@ C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-s
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-service\src\main\java\com\upgrad\quora\service\entity\UserEntity.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-service\src\main\java\com\upgrad\quora\service\exception\AuthenticationFailedException.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-service\src\main\java\com\upgrad\quora\service\exception\InvalidQuestionException.java
+C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-service\src\main\java\com\upgrad\quora\service\business\UserAdminBusinessService.java

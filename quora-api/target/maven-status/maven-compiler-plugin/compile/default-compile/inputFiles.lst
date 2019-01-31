@@ -14,6 +14,7 @@ C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-a
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-api\target\generated-sources\.\com\upgrad\quora\api\model\ErrorResponse.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-api\target\generated-sources\.\com\upgrad\quora\api\model\QuestionEditResponse.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-api\target\generated-sources\.\io\swagger\configuration\SwaggerDocumentationConfig.java
+C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-api\src\main\java\com\upgrad\quora\api\exception\RestExceptionHandler.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-api\target\generated-sources\.\io\swagger\api\ApiResponseMessage.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-api\target\generated-sources\.\io\swagger\RFC3339DateFormat.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-api\target\generated-sources\.\com\upgrad\quora\api\model\QuestionResponse.java
@@ -21,6 +22,7 @@ C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-a
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-api\src\main\java\com\upgrad\quora\api\controller\SignupController.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-api\src\main\java\com\upgrad\quora\api\QuoraApiApplication.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-api\src\main\java\com\upgrad\quora\api\config\SwaggerConfiguration.java
+C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-api\src\main\java\com\upgrad\quora\api\controller\CommonController.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-api\target\generated-sources\.\com\upgrad\quora\api\model\QuestionDeleteResponse.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-api\target\generated-sources\.\com\upgrad\quora\api\model\AnswerEditResponse.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Trello_quora\quora-api\target\generated-sources\.\com\upgrad\quora\api\model\AnswerEditRequest.java

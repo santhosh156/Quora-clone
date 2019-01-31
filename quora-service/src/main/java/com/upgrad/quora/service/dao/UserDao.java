@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
@@ -21,8 +22,21 @@ public class UserDao {
         return userEntity;
     }
 
-    /*public UserEntity getUser(final String userUuid) {
-        entityManager.createNamedQuery("userByEmail")
-        return userEntity;
-    }*/
+    public UserEntity getUserByEmail(final String userEmail) {
+        try {
+            return entityManager.createNamedQuery("userByEmail", UserEntity.class).setParameter("email", userEmail)
+                    .getSingleResult();
+        } catch(NoResultException nre) {
+            return null;
+        }
+    }
+
+    public UserEntity getUserByName(final String userName) {
+        try {
+            return entityManager.createNamedQuery("userByName", UserEntity.class).setParameter("userName", userName)
+                    .getSingleResult();
+        } catch(NoResultException nre) {
+            return null;
+        }
+    }
 }
