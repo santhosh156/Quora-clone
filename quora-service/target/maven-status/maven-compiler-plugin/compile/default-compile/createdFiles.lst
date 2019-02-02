@@ -2,6 +2,7 @@ com\upgrad\quora\service\exception\SignOutRestrictedException.class
 com\upgrad\quora\service\common\GenericErrorCode.class
 com\upgrad\quora\service\exception\UserNotFoundException.class
 com\upgrad\quora\service\common\UnexpectedException.class
+com\upgrad\quora\service\business\UserBusinessService.class
 com\upgrad\quora\service\common\ErrorCode.class
 com\upgrad\quora\service\entity\QuestionEntity.class
 com\upgrad\quora\service\business\SignupBusinessService.class
