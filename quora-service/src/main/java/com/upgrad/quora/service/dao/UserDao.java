@@ -1,5 +1,6 @@
 package com.upgrad.quora.service.dao;
 
+import com.upgrad.quora.service.entity.UserAuthTokenEntity;
 import com.upgrad.quora.service.entity.UserEntity;
 import jdk.nashorn.internal.objects.annotations.Property;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,15 @@ public class UserDao {
         try {
             return entityManager.createNamedQuery("userByName", UserEntity.class).setParameter("userName", userName)
                     .getSingleResult();
+        } catch(NoResultException nre) {
+            return null;
+        }
+    }
+
+    public UserAuthTokenEntity getUserAuthToken(final String accessToken) {
+        try {
+            return entityManager.createNamedQuery("userAuthTokenByAccessToken", UserAuthTokenEntity.class)
+                                                    .setParameter("accessToken", accessToken).getSingleResult();
         } catch(NoResultException nre) {
             return null;
         }
