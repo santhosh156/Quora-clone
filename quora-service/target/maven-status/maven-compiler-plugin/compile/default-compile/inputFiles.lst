@@ -9,6 +9,8 @@ C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Quora-clone-new\quor
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Quora-clone-new\quora-service\src\main\java\com\upgrad\quora\service\exception\AnswerNotFoundException.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Quora-clone-new\quora-service\src\main\java\com\upgrad\quora\service\common\UnexpectedException.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Quora-clone-new\quora-service\src\main\java\com\upgrad\quora\service\exception\AuthorizationFailedException.java
+C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Quora-clone-new\quora-service\src\main\java\com\upgrad\quora\service\business\QuestionBusinessService.java
+C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Quora-clone-new\quora-service\src\main\java\com\upgrad\quora\service\dao\QuestionDao.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Quora-clone-new\quora-service\src\main\java\com\upgrad\quora\service\ServiceConfiguration.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Quora-clone-new\quora-service\src\main\java\com\upgrad\quora\service\entity\UserAuthTokenEntity.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Quora-clone-new\quora-service\src\main\java\com\upgrad\quora\service\entity\AnswerEntity.java
@@ -18,4 +20,3 @@ C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Quora-clone-new\quor
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Quora-clone-new\quora-service\src\main\java\com\upgrad\quora\service\business\JwtTokenProvider.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Quora-clone-new\quora-service\src\main\java\com\upgrad\quora\service\exception\UserNotFoundException.java
 C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Quora-clone-new\quora-service\src\main\java\com\upgrad\quora\service\dao\UserDao.java
-C:\Santhosh\Learn\PG IIIT-B\Assignments\Group-project-Quora\Quora-clone-new\quora-service\src\main\java\com\upgrad\quora\service\business\UserBusinessService.java
