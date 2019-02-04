@@ -49,7 +49,18 @@ public class UserDao {
             return null;
         }
     }
+    ////////////////////////created for user-signin/////////////////////
+    public UserAuthTokenEntity createAuthToken(final UserAuthTokenEntity userAuthTokenEntity) {
+        entityManager.persist(userAuthTokenEntity);
+        return userAuthTokenEntity;
+    }
 
+    public void updateUser(final UserEntity updatedUserEntity) {
+
+        entityManager.merge(updatedUserEntity);
+
+    }
+    ////////////////////////////////////////////////////////////////////////////
     public UserAuthTokenEntity getUserAuthToken(final String accessToken) {
         try {
             return entityManager.createNamedQuery("userAuthTokenByAccessToken", UserAuthTokenEntity.class)

@@ -72,6 +72,14 @@ public class UserAuthTokenEntity implements Serializable {
         this.accessToken = accessToken;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
     public ZonedDateTime getLoginAt() {
         return loginAt;
     }
