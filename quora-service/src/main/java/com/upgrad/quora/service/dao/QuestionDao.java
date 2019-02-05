@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 public class QuestionDao {
@@ -16,4 +17,10 @@ public class QuestionDao {
         entityManager.persist(questionEntity);
         return questionEntity;
     }
+/////////////////////getting the list of questions for getAllQuestions endpoint/////////////////////////
+    public List<QuestionEntity> getAllQuestions(){
+
+        return entityManager.createNamedQuery("AllQuestions", QuestionEntity.class).getResultList();
+    }
+
 }
