@@ -20,7 +20,7 @@ public class AdminController {
     private UserAdminBusinessService userAdminBusinessService;
 
 
-    @RequestMapping(method = RequestMethod.DELETE ,path="/user/delete/{userId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
+    @RequestMapping(method = RequestMethod.DELETE ,path="/admin/user/{userId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
     public ResponseEntity<UserDeleteResponse> deleteUser(@RequestHeader("authorization") final String authorization,
                                                          @PathVariable("userId") final String userUuid)
     {
@@ -34,8 +34,7 @@ public class AdminController {
             e.printStackTrace();
         }
         if(userEntity!=null) {
-            deleteUserResponse= new UserDeleteResponse().
-                    message(userEntity.getUuid(), "USER SUCCESSFULLY DELETED");
+            deleteUserResponse= new UserDeleteResponse().id(userEntity.getUuid());
             return new ResponseEntity<UserDeleteResponse>(deleteUserResponse, HttpStatus.OK);
         }
         return new ResponseEntity<UserDeleteResponse>(deleteUserResponse, HttpStatus.NOT_FOUND);
