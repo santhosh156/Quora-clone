@@ -34,7 +34,8 @@ public class AdminController {
             e.printStackTrace();
         }
         if(userEntity!=null) {
-            deleteUserResponse= new UserDeleteResponse().id(userEntity.getUuid());
+            deleteUserResponse= new UserDeleteResponse().id(userEntity.getUuid()).
+                    status("USER DELETED SUCCESSFULLY");
             return new ResponseEntity<UserDeleteResponse>(deleteUserResponse, HttpStatus.OK);
         }
         return new ResponseEntity<UserDeleteResponse>(deleteUserResponse, HttpStatus.NOT_FOUND);
