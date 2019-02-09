@@ -1,6 +1,6 @@
 server:
   servlet:
-    port: 8080
+    port: 8085
     contextPath: /api
 
 spring:
@@ -12,7 +12,7 @@ spring:
     driverClassName: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/quora
     username: postgres
-    password: thamilh156
+    password: root
 
   jpa:
     properties:
