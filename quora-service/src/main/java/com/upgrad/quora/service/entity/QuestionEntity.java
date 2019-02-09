@@ -15,7 +15,9 @@ import java.time.ZonedDateTime;
 @Table(name = "question")
 //Adding this query to get all the questions created from the database for getAllQuestions endpoint
 @NamedQueries({
-        @NamedQuery(name = "AllQuestions", query = "select i from QuestionEntity i")
+        @NamedQuery(name = "AllQuestions", query = "select i from QuestionEntity i"),
+        //A query to the database for fetching details about the question using uuid as input.
+        @NamedQuery(name = "getQuestion", query = "select i from QuestionEntity i where i.uuid = :uuid")
 })
 
 public class QuestionEntity implements Serializable {

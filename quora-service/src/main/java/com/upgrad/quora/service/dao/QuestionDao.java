@@ -45,5 +45,16 @@ public class QuestionDao {
             return null;
         }
     }
+    //This method is used to get he details of the question in the database which takes the questionId as input from the user.
+    public QuestionEntity getQuestion(final String uuid) {
+        try {
+
+
+            return entityManager.createNamedQuery("getQuestion", QuestionEntity.class).setParameter("uuid", uuid)
+                    .getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
+    }
 
 }
