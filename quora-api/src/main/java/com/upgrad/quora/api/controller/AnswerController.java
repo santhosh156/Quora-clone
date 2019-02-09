@@ -31,7 +31,7 @@ public class AnswerController {
 
         if (answerEntity != null) {
             answerDeleteResponse = new AnswerDeleteResponse().id(answerEntity.getUuid()).
-                    status("QUESTION DELETED");
+                    status("ANSWER DELETED");
             return new ResponseEntity<AnswerDeleteResponse>(answerDeleteResponse, HttpStatus.OK);
         }
         return new ResponseEntity<AnswerDeleteResponse>(answerDeleteResponse, HttpStatus.NOT_FOUND);
