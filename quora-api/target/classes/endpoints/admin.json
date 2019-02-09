@@ -139,7 +139,7 @@
         "id",
         "status"
       ],
-      "example": {
+      "message": {
         "id": "utr-ret-tret34rwr-ewt",
         "status": "USER SUCCESSFULLY DELETED"
       }

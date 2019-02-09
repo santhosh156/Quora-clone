@@ -59,7 +59,7 @@ public class UserDao {
     }
 
     public void deleteUser(final UserEntity userEntity){
-        entityManager.createNamedQuery("deleteUser",UserEntity.class).setParameter("uuid",userEntity.getUuid());
+        entityManager.remove(userEntity);
     }
 
     ////////////////////////////////////////////////////////////////////////////
