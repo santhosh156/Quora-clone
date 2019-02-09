@@ -55,7 +55,7 @@ public class QuestionBusinessService {
         } else if (userAuthTokenEntity.getLogoutAt() != null) {
             throw new AuthorizationFailedException("ATHR-002", "User is signed out.Sign in first to post a question");
         } else if(userEntity==null || !userEntity.getRole().equals("admin")){
-            throw new AuthorizationFailedException("ATHR-002","Only the question owner or admin can delete the question");
+            throw new AuthorizationFailedException("ATHR-003","Only the question owner or admin can delete the question");
         } else if(questionEntity==null){
             throw new InvalidQuestionException("QUES-001","Entered question uuid does not exist");
         }
