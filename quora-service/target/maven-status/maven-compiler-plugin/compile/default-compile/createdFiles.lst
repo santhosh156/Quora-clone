@@ -1,4 +1,5 @@
 com\upgrad\quora\service\exception\SignOutRestrictedException.class
+com\upgrad\quora\service\business\SigninAuthenticationService.class
 com\upgrad\quora\service\common\GenericErrorCode.class
 com\upgrad\quora\service\exception\UserNotFoundException.class
 com\upgrad\quora\service\common\UnexpectedException.class

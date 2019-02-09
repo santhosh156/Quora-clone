@@ -145,8 +145,6 @@
                             <language>spring</language>
                         </configuration>
                     </execution>
-
-
                 </executions>
             </plugin>
         </plugins>
