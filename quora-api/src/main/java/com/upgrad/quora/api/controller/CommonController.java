@@ -22,7 +22,7 @@ public class CommonController {
 
     @RequestMapping(method=RequestMethod.GET, path="/userprofile/{userId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<UserDetailsResponse> getUser(@PathVariable("userId") final String userUuid,
-                                                        @RequestHeader("authorization") final String accessToken) throws UserNotFoundException, AuthorizationFailedException {
+                                                       @RequestHeader("authorization") final String accessToken) throws UserNotFoundException, AuthorizationFailedException {
 
         String[] bearerToken = accessToken.split( "Bearer ");
 

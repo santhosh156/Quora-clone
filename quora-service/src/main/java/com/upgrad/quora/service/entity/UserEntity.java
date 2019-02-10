@@ -52,8 +52,8 @@ public class UserEntity implements Serializable{
     private String email;
 
     @Column(name = "PASSWORD")
-    @Size(max = 255)
     @ToStringExclude
+    @Size(max = 255)
     private String password;
 
     @Column(name = "SALT")

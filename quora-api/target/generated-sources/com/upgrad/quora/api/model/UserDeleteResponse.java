@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * UserDeleteResponse
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-02-10T12:42:39.376+05:30")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-02-10T18:19:22.957+05:30")
 
 public class UserDeleteResponse   {
   @JsonProperty("id")
