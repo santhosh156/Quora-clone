@@ -12,6 +12,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="quora" target="1.8" />
       <module name="quora-api" target="1.8" />
       <module name="Quora-clone" target="1.8" />
       <module name="quora-db" target="1.8" />
