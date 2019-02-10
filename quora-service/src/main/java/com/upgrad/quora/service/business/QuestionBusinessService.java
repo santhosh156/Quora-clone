@@ -25,8 +25,8 @@ public class QuestionBusinessService {
 
     @Transactional
     public QuestionEntity createQuestion(QuestionEntity questionEntity, final String accessToken) throws AuthorizationFailedException {
-
-        UserAuthTokenEntity userAuthTokenEntity = userDao.getUserAuthToken(accessToken);
+        String[] bearerToken = accessToken.split("Bearer ");
+        UserAuthTokenEntity userAuthTokenEntity = userDao.getUserAuthToken(bearerToken[1]);
 
         if (userAuthTokenEntity == null) {
             throw new AuthorizationFailedException("ATHR-001", "User has not signed in");
@@ -42,15 +42,19 @@ public class QuestionBusinessService {
     }
     ////////////A Method which takes the accessToken as parameter for authorization for getAllQuestions endpoint///////
     public List<QuestionEntity> getAllQuestions(final String accessToken) throws  AuthorizationFailedException {
+       //checking the user authorization with the accesstoken
         UserAuthTokenEntity userAuthTokenEntity = userDao.getUserAuthToken(accessToken);
-
+        //Throw AuthorizationFailedException if the user has not signed in
         if (userAuthTokenEntity == null)
         {
             throw new AuthorizationFailedException("ATHR-001", "User has not signed in");
-        } else if (userAuthTokenEntity.getLogoutAt() != null)
+        }
+        //Throw AuthorizationFailedException if the user is loggedout
+        else if (userAuthTokenEntity.getLogoutAt() != null)
         {
             throw new AuthorizationFailedException("ATHR-002", "User is signed out.Sign in first to post a question");
         }
+        //return the all the questions from the database
         return questionDao.getAllQuestions();
 
     }

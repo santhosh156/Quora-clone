@@ -42,13 +42,11 @@ public class QuestionController {
 /////////ResponseEntity GET method takes the accessToken as parameter and returns a list of question details for getAllQuestions endpoint
     @RequestMapping(method=RequestMethod.GET, path="/question/all", produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
     public ResponseEntity getAllQuestions(@RequestHeader("authorization") final String accessToken) throws AuthorizationFailedException{
-
-        //  String[] bearerToken = accessToken.split("Bearer");
-        // final QuestionEntity getAllQuestions = questionBusinessService.getAllQuestions(bearerToken[1]);
-
-
-        final List<QuestionEntity> getAllQuestions = questionBusinessService.getAllQuestions(accessToken);
-
+        //Bearer Authorization
+        String[] bearerToken = accessToken.split("Bearer ");
+        //getting the list of all questions using the bearertoken as parameter
+        final List<QuestionEntity> getAllQuestions = questionBusinessService.getAllQuestions(bearerToken[1]);
+        //adding the list of questions to the question detail response
         List<QuestionDetailsResponse> entities = new ArrayList<QuestionDetailsResponse>();
         for (QuestionEntity n : getAllQuestions) {
             QuestionDetailsResponse entity = new QuestionDetailsResponse();
@@ -58,6 +56,7 @@ public class QuestionController {
             entities.add(entity);
 
         }
+        //returning the response entity with the list of questions and httpstatus
         return  new ResponseEntity<>( entities,HttpStatus.OK);
 
 
