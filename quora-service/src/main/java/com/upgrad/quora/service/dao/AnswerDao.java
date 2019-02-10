@@ -34,4 +34,20 @@ public class AnswerDao {
     public void editAnswerContent(final AnswerEntity answerEntity) {
         entityManager.merge(answerEntity);
     }
+
+    // Method to delete the answer in database
+    public AnswerEntity deleteAnswer(AnswerEntity answerEntity) {
+        entityManager.remove(answerEntity);
+        return answerEntity;
+    }
+
+    public AnswerEntity getAnswerByUuid(final String uuid) {
+        try {
+            return entityManager.createNamedQuery("AnswersDetails", AnswerEntity.class).
+                    setParameter("uuid", uuid)
+                    .getSingleResult();
+        } catch(NoResultException nre) {
+            return null;
+        }
+    }
 }

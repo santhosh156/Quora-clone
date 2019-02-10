@@ -29,11 +29,13 @@ public class QuestionController {
                                                            @RequestHeader("authorization") final String accessToken) throws AuthorizationFailedException {
 
         final QuestionEntity questionEntity = new QuestionEntity();
+        //get the bearerToken
+        String[] bearerToken = accessToken.split("Bearer ");
 
         questionEntity.setUuid(UUID.randomUUID().toString());
         questionEntity.setContent(questionRequest.getContent());
 
-        final QuestionEntity createdQuestionEntity = questionBusinessService.createQuestion(questionEntity, accessToken);
+        final QuestionEntity createdQuestionEntity = questionBusinessService.createQuestion(questionEntity, bearerToken[1]);
         QuestionResponse questionResponse = new QuestionResponse().id(createdQuestionEntity.getUuid()).status("QUESTION CREATED");
 
         return new ResponseEntity<QuestionResponse>(questionResponse, HttpStatus.CREATED);
@@ -99,5 +101,23 @@ public class QuestionController {
         }
         //returning the response entity with the list of questions and httpstatus
         return  new ResponseEntity<>( entities,HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, path = "/question/delete/{questionid}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<QuestionDeleteResponse> deleteQuestion(@PathVariable("questionid") final String questionId,
+                                                                 @RequestHeader("authorization") final String accessToken)
+            throws AuthorizationFailedException, InvalidQuestionException {
+        QuestionEntity questionEntity = null;
+        QuestionDeleteResponse questionDeleteResponse = null;
+
+        //Bearer Authorization
+        String[] bearerToken = accessToken.split("Bearer ");
+
+        questionEntity = questionBusinessService.deleteQuestion(questionId, bearerToken[1]);
+
+        questionDeleteResponse = new QuestionDeleteResponse().id(questionEntity.getUuid()).
+                    status("QUESTION DELETED");
+        return new ResponseEntity<QuestionDeleteResponse>(questionDeleteResponse, HttpStatus.OK);
+
     }
 }

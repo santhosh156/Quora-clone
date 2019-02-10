@@ -60,4 +60,9 @@ public class QuestionDao {
             return null;
         }
     }
+
+    public QuestionEntity deleteQuestion(QuestionEntity questionEntity) {
+        entityManager.remove(questionEntity);
+        return questionEntity;
+    }
 }

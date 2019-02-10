@@ -86,4 +86,29 @@ public class AnswerBusinessService {
         return answerEntity1;
     }
 
+    @Transactional
+    public AnswerEntity deleteAnswer(final String answerId, final String accessToken)
+            throws AuthorizationFailedException, AnswerNotFoundException {
+
+        UserAuthTokenEntity userAuthTokenEntity = userDao.getUserAuthToken(accessToken);
+        AnswerEntity answerEntity=answerDao.getAnswerByUuid(answerId);
+
+        if (userAuthTokenEntity == null) {
+            throw new AuthorizationFailedException("ATHR-001", "User has not signed in");
+        } else if (userAuthTokenEntity.getLogoutAt() != null) {
+            throw new AuthorizationFailedException("ATHR-002", "User is signed out.Sign in first to delete an answer");
+        }
+
+        UserEntity userEntity = userAuthTokenEntity.getUser();
+
+        if((userEntity == null) && (userEntity.getRole().equals("nonadmin"))){
+            throw new AuthorizationFailedException("ATHR-003","Only the answer owner or admin can delete the answer");
+        }else if(answerEntity == null){
+            throw new AnswerNotFoundException("ANS-001","Entered answer uuid does not exist");
+        }
+
+
+        return answerDao.deleteAnswer(answerEntity);
+    }
+
 }
