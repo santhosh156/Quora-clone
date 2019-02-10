@@ -146,8 +146,6 @@ public class QuestionBusinessService {
             throw new InvalidQuestionException("QUES-001","Entered question uuid does not exist");
         }
 
-
-
         return questionDao.deleteQuestion(questionEntity);
     }
 }

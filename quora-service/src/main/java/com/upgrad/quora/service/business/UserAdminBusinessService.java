@@ -52,8 +52,7 @@ public class UserAdminBusinessService {
             throw new AuthorizationFailedException("ATHR-003", "Unauthorized Access, Entered user is not an admin");
         }
 
-        userDao.deleteUser(userEntity);
-        return userEntity;
+        return userDao.deleteUser(userEntity);
     }
 
 }

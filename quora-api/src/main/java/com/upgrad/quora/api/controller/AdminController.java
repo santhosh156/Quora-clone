@@ -30,11 +30,9 @@ public class AdminController {
 
         userEntity = userAdminBusinessService.deleteUser(bearerToken[1],userUuid);
 
-        if(userEntity!=null) {
-            deleteUserResponse= new UserDeleteResponse().id(userEntity.getUuid()).status("USER SUCCESSFULLY DELETED");
-            return new ResponseEntity<UserDeleteResponse>(deleteUserResponse, HttpStatus.OK);
-        }
-        return new ResponseEntity<UserDeleteResponse>(deleteUserResponse, HttpStatus.NOT_FOUND);
+        deleteUserResponse= new UserDeleteResponse().id(userEntity.getUuid()).status("USER SUCCESSFULLY DELETED");
+
+        return new ResponseEntity<UserDeleteResponse>(deleteUserResponse, HttpStatus.OK);
     }
 
 }
