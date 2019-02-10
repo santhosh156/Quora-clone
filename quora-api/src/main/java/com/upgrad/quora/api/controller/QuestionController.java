@@ -64,9 +64,15 @@ public class QuestionController {
 
     ////////////////////////////////a controller method for getAllQuestionsbyUserid endpoint/////
     @RequestMapping(method=RequestMethod.GET, path="question/all/{userId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity getAllQuestionsByUserId(@PathVariable("userId") final String userId, @RequestHeader("authorization") final String accessToken)throws UserNotFoundException, AuthorizationFailedException{
-        final List<QuestionEntity> getAllQuestions =questionBusinessService.getAllQuestionsByUserId(userId,accessToken);
+    public ResponseEntity getAllQuestionsByUserId(@PathVariable("userId") final String userId, @RequestHeader("authorization")
+    final String accessToken)throws UserNotFoundException, AuthorizationFailedException{
+
+        //Bearer Authorization
+        String[] bearerToken = accessToken.split("Bearer ");
+        //getting the list of all questions whose userId is given and  using the bearertoken as parameter
+        final List<QuestionEntity> getAllQuestions =questionBusinessService.getAllQuestionsByUserId(userId,bearerToken[1]);
         List<QuestionDetailsResponse> entities = new ArrayList<QuestionDetailsResponse>();
+        //adding the list of questions to the question detail response
         for (QuestionEntity n : getAllQuestions) {
             QuestionDetailsResponse entity = new QuestionDetailsResponse();
 
@@ -75,6 +81,7 @@ public class QuestionController {
             entities.add(entity);
 
         }
+        //returning the response entity with the list of questions and httpstatus
         return  new ResponseEntity<>( entities,HttpStatus.OK);
     }
 

@@ -25,7 +25,7 @@ public class QuestionDao {
 
         return entityManager.createNamedQuery("AllQuestions", QuestionEntity.class).getResultList();
     }
-///////////////////////getting the list of questions for getAllQuestionsbxuserid endpoint////////////////
+///////////////////////getting the list of questions for getAllQuestionsuserid endpoint////////////////
     public List<QuestionEntity> getQuestionByUserId(final String userId) {
         try {
             TypedQuery<QuestionEntity> query = entityManager.createNamedQuery("AllQuestions", QuestionEntity.class);

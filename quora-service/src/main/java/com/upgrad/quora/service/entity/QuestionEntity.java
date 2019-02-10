@@ -19,7 +19,6 @@ import java.time.ZonedDateTime;
         //A query to the database for fetching details about the question using uuid as input.
         @NamedQuery(name = "getQuestion", query = "select i from QuestionEntity i where i.uuid = :uuid")
 })
-
 public class QuestionEntity implements Serializable {
 
     @Id

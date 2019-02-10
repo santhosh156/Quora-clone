@@ -60,23 +60,25 @@ public class QuestionBusinessService {
     }
 /////////////////a method which takes the userid and accesstoken as the parameter for getallquestionsbyuserid endpoint////////
     public List<QuestionEntity> getAllQuestionsByUserId(String userId,final String accessToken) throws  AuthorizationFailedException,UserNotFoundException {
+       //check the user authorization using userDao
         UserAuthTokenEntity userAuthTokenEntity = userDao.getUserAuthToken(accessToken);
+        //get the user from the userAuthTokenEntity
         UserEntity userEntity=  userAuthTokenEntity.getUser();
-        //String userUuid =userEntity.getUuid();
-        //  UserEntity userEntityUuid = userDao.getUserByUuid(userId);
-
+        //Throw UserNotFoundException if the user Uuid doesnt exit
         if (userEntity == null) {
             throw new UserNotFoundException("USR-001", "User with entered uuid does not exist");
         }
-
-
+        //checking thr user authorization ,throws AuthorizationFailedException if the user is not signed in
         if (userAuthTokenEntity == null)
         {
             throw new AuthorizationFailedException("ATHR-001", "User has not signed in");
-        } else if (userAuthTokenEntity.getLogoutAt() != null)
+        }
+        //Throws the AuthorizationFailedException ifthe user is loggedout
+        else if (userAuthTokenEntity.getLogoutAt() != null)
         {
             throw new AuthorizationFailedException("ATHR-002", "User is signed out.Sign in first to get all questions posted by a specific user");
         }
+        //returns the list of questions created by user with userId
         return questionDao.getQuestionByUserId(userId);
 
     }
