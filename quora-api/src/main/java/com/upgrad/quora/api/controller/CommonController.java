@@ -11,6 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Base64;
+
 @RestController
 @RequestMapping("/")
 public class CommonController {
@@ -21,7 +23,10 @@ public class CommonController {
     @RequestMapping(method=RequestMethod.GET, path="/userprofile/{userId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<UserDetailsResponse> getUser(@PathVariable("userId") final String userUuid,
                                                         @RequestHeader("authorization") final String accessToken) throws UserNotFoundException, AuthorizationFailedException {
-        final UserEntity userEntity = userAdminBusinessService.getUser(userUuid, accessToken);
+
+        String[] bearerToken = accessToken.split( "Bearer ");
+
+        final UserEntity userEntity = userAdminBusinessService.getUser(userUuid, bearerToken[1]);
         UserDetailsResponse userDetailsResponse = new UserDetailsResponse().firstName(userEntity.getFirstName())
                 .lastName(userEntity.getLastName()).userName(userEntity.getUserName()).emailAddress(userEntity.getEmail())
                 .country(userEntity.getCountry()).aboutMe(userEntity.getAboutMe()).dob(userEntity.getDob())

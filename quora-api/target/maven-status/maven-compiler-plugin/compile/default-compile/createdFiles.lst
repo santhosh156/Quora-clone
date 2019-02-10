@@ -1,4 +1,5 @@
 com\upgrad\quora\api\model\UserDeleteResponse.class
+com\upgrad\quora\api\controller\AdminController.class
 io\swagger\configuration\HomeController.class
 com\upgrad\quora\api\model\AnswerResponse.class
 com\upgrad\quora\api\model\AnswerDetailsResponse.class
@@ -18,6 +19,7 @@ com\upgrad\quora\api\model\SignupUserRequest.class
 io\swagger\api\ApiOriginFilter.class
 com\upgrad\quora\api\controller\QuestionController.class
 io\swagger\Swagger2SpringBoot$ExitException.class
+com\upgrad\quora\api\controller\UserController.class
 com\upgrad\quora\api\exception\RestExceptionHandler.class
 io\swagger\api\NotFoundException.class
 com\upgrad\quora\api\model\QuestionEditRequest.class
@@ -29,7 +31,5 @@ io\swagger\configuration\SwaggerDocumentationConfig.class
 com\upgrad\quora\api\model\AnswerRequest.class
 com\upgrad\quora\api\model\QuestionResponse.class
 com\upgrad\quora\api\config\SwaggerConfiguration.class
-com\upgrad\quora\api\controller\SignupController.class
 com\upgrad\quora\api\model\AnswerDeleteResponse.class
-com\upgrad\quora\api\controller\SigninAuthenticationController.class
 com\upgrad\quora\api\model\QuestionDeleteResponse.class
