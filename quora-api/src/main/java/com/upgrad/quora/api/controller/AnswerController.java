@@ -12,12 +12,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 //The annotation which adds the @Controller.The RESTful web service controller simply returns the object
 // and the object data is written directly to the HTTP response as JSON/XML.
 @RestController
 //The annotation to map with URL request of type '/'
 @RequestMapping("/")
-public class AnswerBusinessController {
+public class AnswerController {
 
     @Autowired
     private AnswerBusinessService answerBusinessService;
@@ -77,6 +81,32 @@ public class AnswerBusinessController {
 
         return new ResponseEntity<AnswerDeleteResponse>(answerDeleteResponse, HttpStatus.OK);
 
+    }
+
+    //a controller method for getAllAnswersToQuestion endpoint/////
+    @RequestMapping(method=RequestMethod.GET, path="answer/all/{questionId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity getAllAnswersToQuestion (@PathVariable("questionId") final String questionId, @RequestHeader("authorization")
+                                                final String accessToken)throws InvalidQuestionException, AuthorizationFailedException{
+
+        //Bearer Authorization
+        String[] bearerToken = accessToken.split("Bearer ");
+
+        //getting the list of all answers whose questionId is given and  using the bearertoken as parameter
+        final List<AnswerEntity> getAllAnswers = answerBusinessService.getAllAnswersToQuestion(questionId, bearerToken[1]);
+        List<AnswerDetailsResponse> entities = new ArrayList<AnswerDetailsResponse>();
+
+        //adding the list of answers to the answers detail response
+        for (AnswerEntity n : getAllAnswers) {
+            AnswerDetailsResponse entity = new AnswerDetailsResponse();
+
+            entity.setId(n.getUuid());
+            entity.setAnswerContent(n.getAnswer());
+            entity.setQuestionContent(n.getQuestion().getContent());
+            entities.add(entity);
+        }
+
+        //returning the response entity with the list of questions and httpstatus
+        return  new ResponseEntity<>( entities, HttpStatus.OK);
     }
 
 }

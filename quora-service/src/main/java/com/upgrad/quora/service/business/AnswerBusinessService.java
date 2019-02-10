@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 //The @Service annotation is used in your service layer.for auto-detection when using annotation-based configuration and classpath scanning.
 @Service
@@ -110,5 +111,37 @@ public class AnswerBusinessService {
 
         return answerDao.deleteAnswer(answerEntity);
     }
+
+    //a method which takes the questionId and accesstoken as the parameter for getAllAnswersToQuestion endpoint////////
+    public List<AnswerEntity> getAllAnswersToQuestion(String questionId, final String accessToken)
+            throws  AuthorizationFailedException, InvalidQuestionException {
+
+        //check the user authorization using userDao
+        UserAuthTokenEntity userAuthTokenEntity = userDao.getUserAuthToken(accessToken);
+
+        //get the user from the userAuthTokenEntity
+        QuestionEntity questionEntity =  questionDao.getQuestion(questionId);
+
+        //Throw UserNotFoundException if the user Uuid doesnt exit
+        if (questionEntity == null) {
+            throw new InvalidQuestionException("QUES-001", "The question with entered uuid whose details are to be seen does not exist");
+        }
+
+        //checking thr user authorization ,throws AuthorizationFailedException if the user is not signed in
+        if (userAuthTokenEntity == null)
+        {
+            throw new AuthorizationFailedException("ATHR-001", "User has not signed in");
+        }
+        //Throws the AuthorizationFailedException ifthe user is loggedout
+        else if (userAuthTokenEntity.getLogoutAt() != null)
+        {
+            throw new AuthorizationFailedException("ATHR-002", "User is signed out.Sign in first to get the answers");
+        }
+
+        //returns the list of answers created by user with userId
+        return answerDao.getAllAnswersToQuestion(questionId);
+
+    }
+
 
 }

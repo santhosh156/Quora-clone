@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.ArrayList;
+import java.util.List;
 
 //@Repository is an annotation that marks the specific class as a Data Access Object
 @Repository
@@ -46,6 +49,27 @@ public class AnswerDao {
             return entityManager.createNamedQuery("AnswersDetails", AnswerEntity.class).
                     setParameter("uuid", uuid)
                     .getSingleResult();
+        } catch(NoResultException nre) {
+            return null;
+        }
+    }
+
+    //getting the list of questions for getAllQuestionsuserid endpoint////////////////
+    public List<AnswerEntity> getAllAnswersToQuestion(final String questionId) {
+        try {
+            TypedQuery<AnswerEntity> query = entityManager.createNamedQuery("AllAnswers", AnswerEntity.class);
+
+            List<AnswerEntity> answerList = query.getResultList();
+            List<AnswerEntity> resultList = new ArrayList<AnswerEntity>();
+            //this for loop selects all the comments whose imageId equals the comment's imageid
+            for(AnswerEntity answer : answerList){
+                if(answer.getQuestion().getUuid().equals(questionId)){
+                    //add the question to the list
+                    resultList.add(answer);
+                }
+            }
+
+            return resultList;
         } catch(NoResultException nre) {
             return null;
         }
