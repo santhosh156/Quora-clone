@@ -40,4 +40,22 @@ public class AnswerBusinessController {
 
     }
 
+    ////////Creating a method for editing an already existing answer ////////////////////////////////////////////
+    @RequestMapping(method=RequestMethod.PUT, path="/answer/edit/{answerId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE ,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<AnswerEditResponse> editAnswer(final AnswerEditRequest answerEditRequest,@PathVariable("answerId") final String answerId,
+                                                         @RequestHeader("authorization") final String accessToken) throws AuthorizationFailedException, AnswerNotFoundException {
+        //Creating a new instance of the AnswerEntity
+        AnswerEntity answerEntity = new AnswerEntity();
+        //setAnswer with the new content from the ansEditRequest
+        answerEntity.setAnswer(answerEditRequest.getContent());
+        //get the bearerToken
+        String[] bearerToken = accessToken.split("Bearer ");
+        //call the answerBusinessService to the edit the answer
+        answerBusinessService.editAnswer(answerEntity,answerId,bearerToken[1]);
+        //attach the details to the answerEditResponse
+        AnswerEditResponse answerEditResponse = new AnswerEditResponse().id(answerEntity.getUuid()).status("ANSWER EDITED");
+        return new ResponseEntity<AnswerEditResponse>(answerEditResponse, HttpStatus.OK);
+    }
+}
+
 }

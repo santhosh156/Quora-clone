@@ -56,5 +56,35 @@ public class AnswerBusinessService {
         return answerDao.createAnswer(answerEntity);
     }
 
+    ////////editAnswer transactional method////////////////////////
+    @Transactional(propagation = Propagation.REQUIRED)
+    public AnswerEntity editAnswer(AnswerEntity answerEntity,final String answerID, final String authorizationToken)throws  AuthorizationFailedException,AnswerNotFoundException{
+        //get the userAuthToken details from userDao
+        UserAuthTokenEntity userAuthTokenEntity =userDao.getUserAuthToken(authorizationToken);
+        //get the answer Details using the answerId which is nothing but Uuid and put it in answerEntity1 instance
+        AnswerEntity answerEntity1 =  answerDao.getAnswer(answerID);
+        //now set the answer with the new answer content and attach i to the answerEntity1
+        answerEntity1.setAnswer(answerEntity.getAnswer());
+        //throw AnswerNotFoundException if the answerId is not found in the database
+        if(answerEntity == null){
+            throw new AnswerNotFoundException("ANS-001","Entered answer uuid does not exist");
+        }
+        //Throw AuthorizationFailedException if the user is not authorized
+        if (userAuthTokenEntity == null) {
+            throw new AuthorizationFailedException("ATHR-001", "User has not signed in");
+            //throw  AuthorizationFailedException if the user is logged out
+        } else if (userAuthTokenEntity.getLogoutAt() != null) {
+            throw new AuthorizationFailedException("ATHR-002", "User is signed out.Sign in first to edit an answer");
+        }
+        //Throw AuthorizationFailedException if the owner of the answer and the ser who signed in are no the same
+        else if(answerEntity1.getUser() != (userAuthTokenEntity.getUser())){
+            throw new AuthorizationFailedException("ATHR-003", "Only the answer owner can edit the answer");
+        }
+        //called answerDao to merge the content and update in the database
+        answerDao.editAnswerContent(answerEntity1);
+        return  answerEntity;
+    }
+
+
 }
 
