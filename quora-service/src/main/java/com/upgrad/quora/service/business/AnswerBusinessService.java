@@ -63,10 +63,9 @@ public class AnswerBusinessService {
         UserAuthTokenEntity userAuthTokenEntity =userDao.getUserAuthToken(authorizationToken);
         //get the answer Details using the answerId which is nothing but Uuid and put it in answerEntity1 instance
         AnswerEntity answerEntity1 =  answerDao.getAnswer(answerID);
-        //now set the answer with the new answer content and attach i to the answerEntity1
-        answerEntity1.setAnswer(answerEntity.getAnswer());
+
         //throw AnswerNotFoundException if the answerId is not found in the database
-        if(answerEntity == null){
+        if(answerEntity1 == null){
             throw new AnswerNotFoundException("ANS-001","Entered answer uuid does not exist");
         }
         //Throw AuthorizationFailedException if the user is not authorized
@@ -80,6 +79,8 @@ public class AnswerBusinessService {
         else if(answerEntity1.getUser() != (userAuthTokenEntity.getUser())){
             throw new AuthorizationFailedException("ATHR-003", "Only the answer owner can edit the answer");
         }
+        //now set the answer with the new answer content and attach i to the answerEntity1
+        answerEntity1.setAnswer(answerEntity.getAnswer());
         //called answerDao to merge the content and update in the database
         answerDao.editAnswerContent(answerEntity1);
         return  answerEntity;
